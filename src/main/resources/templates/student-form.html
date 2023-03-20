@@ -1,0 +1,73 @@
+<html lang="en">
+
+<head>
+    <title>Student Registration Form</title>
+</head>
+
+<body>
+    <form action="processStudentForm" method="post">
+
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName"></input>
+
+        <br>
+            
+        <label for="lastName">Last Name (*)</label>
+        <input type="text" name="lastName"></input>
+        <!-- <p th:if="${#fields.hasErrors('student.lastName')}" class="label label-danger" th:errors="*{student.lastName}"></p> -->
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('student.lastName')}">
+            <p th:each="err : ${#fields.errors('student.lastName')}" th:text="${err}"></p>
+        </div>
+
+        <br>
+
+        <label for="freePasses">Free Passes</label>
+        <input type="text" name="freePasses"></input>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('student.freePasses')}">
+            <p th:each="err : ${#fields.errors('student.freePasses')}" th:text="${err}"></p>
+        </div>
+
+        <br>
+
+        <select id="country" name="country">
+            <option th:each="countryOptions : ${student.countryOptions}" th:text="${countryOptions}" />
+        </select>
+
+        <br>
+
+        <label for="postalCode">Postal code</label>
+        <input type="text" name="postalCode"></input>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('student.postalCode')}">
+            <p th:each="err : ${#fields.errors('student.postalCode')}" th:text="${err}"></p>
+        </div>
+
+        <br>
+
+        Favorite Language:
+        Java: <input type="radio" name="favoriteLanguage" th:value="Java" />
+        C#: <input type="radio" name="favoriteLanguage" th:value="Csharp" />
+        PHP: <input type="radio" name="favoriteLanguage" th:value="PHP" />
+        Ruby: <input type="radio" name="favoriteLanguage" th:value="Ruby" />
+
+        <br>
+
+        Operating Systems:
+        Windows: <input type="checkbox" name="operatingSystems" th:value="Windows" />
+        Linux: <input type="checkbox" name="operatingSystems" th:value="Linux" />
+        MacOs: <input type="checkbox" name="operatingSystems" th:value="MacOs" />
+
+        <br>
+
+        <label for="courseCode">Course code</label>
+        <input type="text" name="courseCode"></input>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('student.courseCode')}">
+            <p th:each="err : ${#fields.errors('student.courseCode')}" th:text="${err}"></p>
+        </div>
+
+        <br>
+
+        <input type="submit" value="Submit"></input>
+    </form>
+</body>
+
+</html>
